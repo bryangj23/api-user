@@ -18,7 +18,6 @@ PUT /roles/{roleId}
 Updates an existing role identified by its ID.
 
 DELETE /roles/{roleId}
-
 Deletes a role from the system (irreversible operation).
 
 👤 Users
@@ -53,20 +52,6 @@ A User is associated with exactly one Role.
 A Role can be assigned to many Users.
 
 This is a classic many-to-one relationship from User to Role.
-
-+------------+       Many-to-One       +------------+
-|   Users    |------------------------>|   Roles    |
-+------------+                        +------------+
-| id         |                        | id         |
-| userNumber |                        | code       |
-| email      |                        | name       |
-| name       |                        | description|
-| secondName |                        +------------+
-| lastNames  |
-| mothersSurname |
-| active     |
-| role_id    | (FK)                   (PK: id)
-+------------+
 
 
 ## 🧰 Technologies Used
