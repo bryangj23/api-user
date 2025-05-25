@@ -1,0 +1,656 @@
+openapi: 3.0.0
+info:
+  title: Car (API)
+  description: Service responsible for controlling the administration and management of users.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /business-support/user/v1/users:
+    post:
+      tags:
+        - User
+      operationId: createUser
+      summary: Create user
+      description: Functionality that allows creating user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequestDto'
+        required: true
+      responses:
+        '201':
+          description: Created user successfully
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/UserResponseDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      tags:
+        - User
+      operationId: listUsers
+      summary: Get a list of users
+      description: Retrieve a paginated list of users with optional filters.
+      parameters:
+        - name: filters
+          in: query
+          required: false
+          description: Optional filters for the employment positions.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          description: Optional limit on the number of records to be returned.
+          schema:
+            type: integer
+            default: 20  # Default to 20
+        - name: offset
+          in: query
+          required: false
+          description: Page size for pagination.
+          schema:
+            type: integer
+            default: 0  # Default to first page
+        - name: sort
+          in: query
+          required: false
+          description: Sort the records by a parameter in ascending or descending order.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful retrieval of list of users
+          headers:
+            count:
+              description: Total number of users.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserResponseDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /business-support/user/v1/users/{userId}:
+    put:
+      tags:
+        - User
+      operationId: updateUser
+      summary: Update users
+      description: Update of user.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: ID user.
+          schema:
+            type: string
+            format: long
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdateRequestDto'
+        required: true
+      responses:
+        '200':
+          description: Update user successfully
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/UserResponseDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      tags:
+        - User
+      operationId: getUser
+      summary: Get user
+      description: Get user by ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: ID user.
+          schema:
+            type: string
+            format: long
+      responses:
+        '200':
+          description: Get user successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponseDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - User
+      operationId: deleteUser
+      summary: Deactivate user
+      description: Deactivate user by ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: ID user.
+          schema:
+            type: string
+            format: long
+      responses:
+        '204':
+          description: Deactivate user successfully.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /business-support/user/v1/roles:
+    post:
+      tags:
+        - Role
+      operationId: createRole
+      summary: Create role
+      description: Functionality that allows creating role
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoleRequestDto'
+        required: true
+      responses:
+        '201':
+          description: Created role successfully
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/RoleResponseDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      tags:
+        - Role
+      operationId: listRoles
+      summary: Get a list of roles
+      description: Retrieve a paginated list of roles with optional filters.
+      parameters:
+        - name: filters
+          in: query
+          required: false
+          description: Optional filters for the employment positions.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          description: Optional limit on the number of records to be returned.
+          schema:
+            type: integer
+            default: 20  # Default to 20
+        - name: offset
+          in: query
+          required: false
+          description: Page size for pagination.
+          schema:
+            type: integer
+            default: 0  # Default to first page
+        - name: sort
+          in: query
+          required: false
+          description: Sort the records by a parameter in ascending or descending order.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful retrieval of list of users
+          headers:
+            count:
+              description: Total number of users.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RoleResponseDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /business-support/user/v1/roles/{roleId}:
+    put:
+      tags:
+        - Role
+      operationId: updateRole
+      summary: Update roles
+      description: Update of role.
+      parameters:
+        - name: roleId
+          in: path
+          required: true
+          description: ID role.
+          schema:
+            type: string
+            format: long
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoleRequestDto'
+        required: true
+      responses:
+        '200':
+          description: Update role successfully
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/RoleResponseDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Role
+      operationId: deleteRole
+      summary: Delete role
+      description: Delete role by ID.
+      parameters:
+        - name: roleId
+          in: path
+          required: true
+          description: ID role.
+          schema:
+            type: string
+            format: long
+      responses:
+        '204':
+          description: Delete role successfully.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    BadRequest:
+      description: 'Solicitud incorrecta'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HeaderEntityError'
+    Unauthorized:
+      description: 'No autorizado'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/401Response'
+    Forbidden:
+      description: 'Acceso prohibido'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/403Response'
+    NotFound:
+      description: 'No encontrado'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/404Response'
+  schemas:
+    RoleRequestDto:
+      type: object
+      required:
+        - code
+        - name
+      properties:
+        code:
+          type: string
+          maxLength: 25
+        name:
+          type: string
+          maxLength: 25
+        description:
+          type: string
+          maxLength: 40
+    RoleResponseDto:
+      type: object
+      properties:
+        id:
+          type: number
+          format: long
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    UserRequestDto:
+      type: object
+      required:
+        - userNumber
+        - email
+        - name
+        - lastNames
+        - roleId
+      properties:
+        userNumber:
+          type: string
+          minLength: 1
+          maxLength: 10
+        email:
+          type: string
+          maxLength: 255
+        name:
+          type: string
+          minLength: 1
+          maxLength: 50
+        secondName:
+          type: string
+          maxLength: 50
+        lastNames:
+          type: string
+          minLength: 1
+          maxLength: 100
+        mothersSurname:
+          type: string
+          maxLength: 100
+        roleId:
+          type: integer
+          format: int64
+    UserUpdateRequestDto:
+      type: object
+      required:
+        - email
+        - name
+        - lastNames
+        - roleId
+      properties:
+        email:
+          type: string
+          maxLength: 255
+        name:
+          type: string
+          minLength: 1
+          maxLength: 50
+        secondName:
+          type: string
+          maxLength: 50
+        lastNames:
+          type: string
+          minLength: 1
+          maxLength: 100
+        mothersSurname:
+          type: string
+          maxLength: 100
+        roleId:
+          type: integer
+          format: int64
+    UserResponseDto:
+      type: object
+      properties:
+        id:
+          type: number
+          format: long
+        userNumber:
+          type: string
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        secondName:
+          type: string
+        lastNames:
+          type: string
+        mothersSurname:
+          type: string
+        active:
+          type: boolean
+        role:
+          $ref: '#/components/schemas/RoleResponseDto'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    401Response:
+      description: 'No autorizado'
+      type: object
+      properties:
+        code:
+          type: string
+          example: '40100'
+          description: 'Código de negocio asociado al error encontrado'
+        message:
+          type: string
+          example: 'No autorizado'
+          description: 'Mensaje legible que representa el estado del resultado del servicio'
+        entityTypeName:
+          type: string
+          example: 'PaymentOrderInitiateRequestDto'
+          description: 'Modelo en el que el error fue encontrado'
+        status:
+          type: integer
+          example: 401
+          description: 'Código HTTP con el que se respondió a la petición'
+    403Response:
+      description: 'Acceso prohibido'
+      type: object
+      properties:
+        code:
+          type: string
+          example: '40300'
+          description: 'Código de negocio asociado al error encontrado'
+        message:
+          type: string
+          example: 'Acceso prohibido'
+          description: 'Mensaje legible que representa el estado del resultado del servicio'
+        entityTypeName:
+          type: string
+          example: 'PaymentOrderInitiateRequestDto'
+          description: 'Modelo en el que el error fue encontrado'
+        status:
+          type: integer
+          example: 403
+          description: 'Código HTTP con el que se respondió a la petición'
+    404Response:
+      description: 'URL inválida'
+      type: object
+      properties:
+        code:
+          type: string
+          example: '40400'
+          description: 'Código de negocio asociado al error encontrado'
+        message:
+          type: string
+          example: 'Url inválida'
+          description: 'Mensaje legible que representa el estado del resultado del servicio'
+        entityTypeName:
+          type: string
+          example: 'PaymentOrderInitiateRequestDto'
+          description: 'Modelo en el que el error fue encontrado'
+        status:
+          type: integer
+          example: 404
+          description: 'Código HTTP con el que se respondió a la petición'
+    415Response:
+      description: 'tipo de dato del body distinto de application/json'
+      type: object
+      properties:
+        message:
+          type: string
+          example: 'El Content-Type no se encuentra soportado'
+          description: 'Mensaje legible que representa el estado del resultado del servicio'
+        status:
+          type: integer
+          example: 415
+          description: 'Código HTTP con el que se respondió a la petición'
+    422Response:
+      type: object
+      properties:
+        entityTypeName:
+          type: string
+          example: "PaymentOrderExecuteRequestDto"
+          description: 'Modelo en el que el error fue encontrado'
+        validation:
+          type: array
+          items:
+            $ref: '#/components/schemas/Validation'
+        message:
+          type: string
+          example: "Error in Dto"
+          description: 'Mensaje que indica el error general encontrado'
+        code:
+          type: string
+          example: "422000"
+        status:
+          type: integer
+          example: 422
+    HeaderEntityError:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 400
+          description: 'Código HTTP con el que se respondió a la petición'
+        entityTypeName:
+          type: string
+          example: Headers
+        message:
+          type: string
+          example: "El encabezado es requerido"
+        code:
+          type: string
+          example: '40000'
+          description: 'Código de negocio asociado al error encontrado'
+    Validation:
+      type: object
+      properties:
+        attribute:
+          type: string
+          description: "Campo donde el error fue encontrado"
+          example: "entity.value"
+    500Response:
+      description: 'Error interno'
+      type: object
+      properties:
+        code:
+          type: string
+          example: "50000"
+          description: 'Código de negocio asociado al error encontrado'
+        message:
+          type: string
+          example: 'Ha ocurrido un error inesperado al procesar la solicitud'
+          description: 'Mensaje legible que representa el estado del resultado del servicio'
+        status:
+          type: integer
+          example: 500
+          description: 'Código HTTP con el que se respondió a la petición'
+    502Response:
+      description: 'Puerta de entrada erronea'
+      type: object
+      properties:
+        code:
+          type: string
+          example: '50200'
+          description: 'Código de negocio asociado al error encontrado'
+        message:
+          type: string
+          example: 'Bad Gateway'
+          description: 'Mensaje legible que representa el estado del resultado del servicio'
+        status:
+          type: integer
+          example: 502
+          description: 'Código HTTP con el que se respondió a la petición'
+    503Response:
+      description: 'Servicio no disponible'
+      type: object
+      properties:
+        code:
+          type: string
+          example: '50300'
+          description: 'Código de negocio asociado al error encontrado'
+        message:
+          type: string
+          example: 'Service Unavailable'
+          description: 'Mensaje legible que representa el estado del resultado del servicio'
+        status:
+          type: integer
+          example: 503
+          description: 'Código HTTP con el que se respondió a la petición'
+    504Response:
+      description: 'Tiempo de espera agotado'
+      type: object
+      properties:
+        code:
+          type: string
+          example: '50400'
+          description: 'Código de negocio asociado al error encontrado'
+        message:
+          type: string
+          example: 'Gateway Timeout'
+          description: 'Mensaje legible que representa el estado del resultado del servicio'
+        status:
+          type: integer
+          example: 504
+          description: 'Código HTTP con el que se respondió a la petición'
