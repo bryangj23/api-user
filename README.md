@@ -8,17 +8,25 @@ The api-user microservice is part of the system's distributed architecture and i
 GET /roles
 
 Retrieves a paginated list of roles with optional filtering support.
+![image](https://github.com/user-attachments/assets/6fa6c876-ec02-4e51-8160-fea8ef1183ac)
+
 
 POST /roles
 
 Creates a new role using the data provided in the request body.
+![image](https://github.com/user-attachments/assets/7f173e49-9768-4836-a276-726cd93cd969)
+
 
 PUT /roles/{roleId}
 
 Updates an existing role identified by its ID.
+![image](https://github.com/user-attachments/assets/a3859be7-e830-491d-8e58-98b7423c66a3)
+
 
 DELETE /roles/{roleId}
 Deletes a role from the system (irreversible operation).
+![image](https://github.com/user-attachments/assets/86a7b94b-b883-4558-abaa-e0f120da5cc5)
+
 
 👤 Users
 
@@ -31,18 +39,25 @@ Retrieves a paginated list of registered users with filtering support.
 GET /users/{userId}
 
 Retrieves detailed information of a specific user by their ID.
+![image](https://github.com/user-attachments/assets/90dc80d4-c392-4dc1-83eb-6c39f4059d62)
 
 POST /users
 
 Creates a new user with input validations.
+![image](https://github.com/user-attachments/assets/1af26cc5-5f91-4f8d-94e7-58a25788a17e)
+
 
 PUT /users/{userId}
 
 Partially updates the data of an existing user.
+![image](https://github.com/user-attachments/assets/48c19a2c-3a29-45d4-9511-16abec41c8b3)
+
 
 DELETE /users/{userId}
 
 Deactivates a user (the user is not physically removed, just marked as inactive).
+![image](https://github.com/user-attachments/assets/5af9810e-cb43-4905-959a-e9f02fdf3ce5)
+
 
 
 🧩 Entity Relationship Overview
