@@ -25,6 +25,8 @@ Deletes a role from the system (irreversible operation).
 GET /users
 
 Retrieves a paginated list of registered users with filtering support.
+![image](https://github.com/user-attachments/assets/b6f610ea-0861-4fce-960a-4be13fdef2d6)
+
 
 GET /users/{userId}
 
