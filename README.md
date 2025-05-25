@@ -61,17 +61,6 @@ Deactivates a user (the user is not physically removed, just marked as inactive)
 
 
 
-🧩 Entity Relationship Overview
-The api-user microservice includes two main domain entities: User and Role, which are designed following a normalized relational model to ensure consistency and integrity.
-
-🔗 Entity Relationship
-A User is associated with exactly one Role.
-
-A Role can be assigned to many Users.
-
-This is a classic many-to-one relationship from User to Role.
-
-
 ## 🧰 Technologies Used
 
 - Java 17+
