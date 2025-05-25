@@ -5,14 +5,12 @@ The api-user microservice is part of the system's distributed architecture and i
 
 🔐 Roles
 
-GET /roles
-
+- GET /roles
 Retrieves a paginated list of roles with optional filtering support.
 ![image](https://github.com/user-attachments/assets/6fa6c876-ec02-4e51-8160-fea8ef1183ac)
 
 
-POST /roles
-
+- POST /roles
 Creates a new role using the data provided in the request body.
 ![image](https://github.com/user-attachments/assets/7f173e49-9768-4836-a276-726cd93cd969)
 
