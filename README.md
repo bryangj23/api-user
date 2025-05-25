@@ -141,6 +141,8 @@ liquibase --defaultsFile=liquibase/liquibase.properties --changeLogFile=liquibas
 
 Document Reference: [Docs File](swagger/swagger.yaml)
 
+Postman collection: [Docs File](api-user.postman_collection.json)
+
 📄 License
 This project is free to use for educational and evaluation purposes.
 
