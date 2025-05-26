@@ -21,14 +21,17 @@ import java.time.ZoneOffset;
 @MappedSuperclass
 public class BaseDateEntity implements Serializable {
 
-    @Column(nullable = false, insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @Column(nullable = false)
     private LocalDateTime updatedAt;
+
     @PrePersist
     protected void onCreate() {
-        setCreatedAt(LocalDateTime.now(ZoneOffset.UTC));
-        setUpdatedAt(getCreatedAt());
+        LocalDateTime nowUtc = LocalDateTime.now(ZoneOffset.UTC);
+        setCreatedAt(nowUtc);
+        setUpdatedAt(nowUtc);
     }
 
     @PreUpdate

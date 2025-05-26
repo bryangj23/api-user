@@ -44,7 +44,7 @@ paths:
         - name: filters
           in: query
           required: false
-          description: Optional filters for the employment positions.
+          description: Optional filters for the users.
           schema:
             type: string
         - name: limit
